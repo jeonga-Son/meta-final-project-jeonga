@@ -1,59 +1,75 @@
 <template>
-    <!-- footer section start -->
-    <div class="footer_section layout_padding">
+    <footer class="page-footer">
       <div class="container">
-        <div class="footer_main">
-          <div class="footer_left">
-            <h1 class="contact_taital"><span>Contact </span> <img src="@/assets/images/icon-2.png"> <span>Us</span></h1>
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-3 py-3">
+            <h3>
+              Meta<span style="color: #50bcdf">bowwow.</span>
+            </h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+
+            <p>
+              <a href="#">bowwow.info@mail.com</a>
+            </p>
+            <p>
+              <a href="#">02-1234-5678</a>
+            </p>
           </div>
-          <div class="footer_left">
-            <div class="location_text"><a href="#"><img src="@/assets/images/map-icon.png"><span class="padding_left_15">Locations</span></a></div>
+          <div class="col-lg-3 py-3">
+            <h5>Quick Links</h5>
+            <ul class="footer-menu">
+              <li><a href="#">How it works</a></li>
+              <li><a href="#">Security</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Resources</a></li>
+              <li><a href="#">Report a Bug</a></li>
+            </ul>
           </div>
-          <div class="footer_left">
-            <div class="location_text"><a href="#"><img src="@/assets/images/call-icon.png"><span class="padding_left_15">+71 9876543210</span></a></div>
+          <div class="col-lg-3 py-3">
+            <h5>About Us</h5>
+            <ul class="footer-menu">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Our Teams</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">News & Press</a></li>
+            </ul>
           </div>
-          <div class="footer_left">
-            <div class="location_text"><a href="#"><img src="@/assets/images/map-icon.png"><span class="padding_left_15">demo@gmail.com</span></a></div>
+          <div class="col-lg-3 py-3">
+            <h5>Subscribe</h5>
+            <form action="#">
+              <input type="text" class="form-control"
+                placeholder="Enter your mail..">
+            </form>
+
+            <div class="sosmed-button mt-4">
+              <a href="#"><span class="mai-logo-facebook-f"></span></a> <a
+                href="#"><span class="mai-logo-twitter"></span></a> <a href="#"><span
+                class="mai-logo-google"></span></a> <a href="#"><span
+                class="mai-logo-linkedin"></span></a>
+            </div>
           </div>
         </div>
-        <div class="contact_section">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="mail_section">
-                <input type="" class="email_text" placeholder="Name" name="Name">
-                <input type="" class="email_text" placeholder="Email" name="Email">
-                <input type="" class="email_text" placeholder="Phone Number" name="Phone Number">
-                <textarea class="massage_text" placeholder="Message" rows="5" id="comment" name="Message"></textarea>
-                <div class="send_bt"><a href="#">send</a></div>
-              </div>
+
+        <div class="row">
+          <div class="col-sm-6 py-2">
+            <p id="copyright">
+              &copy; 2020 <a href="https://macodeid.com/">MACode ID</a>. All
+              rights reserved
+            </p>
+          </div>
+          <div class="col-sm-6 py-2 text-right">
+            <div class="d-inline-block px-3">
+              <a href="#">Privacy</a>
             </div>
-            <div class="col-md-6">
-              <div class="map_main">
-                <div class="map-responsive">
-                  <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France" width="600" height="280" frameborder="0" style="border:0; width: 100%;" allowfullscreen></iframe>
-                </div>
-              </div>
-              <div class="social_icon">
-                <ul>
-                  <li><a href="#"><img src="@/assets/images/fb-icon1.png"></a></li>
-                  <li><a href="#"><img src="@/assets/images/twitter-icon1.png"></a></li>
-                  <li><a href="#"><img src="@/assets/images/linkden-icon1.png"></a></li>
-                  <li><a href="#"><img src="@/assets/images/instagram-icon1.png"></a></li>
-                </ul>
-              </div>
+            <div class="d-inline-block px-3">
+              <a href="#">Contact Us</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- footer section end -->
-    <!-- copyright section start -->
-    <div class="copyright_section">
-      <div class="container">
-        <p class="copyright_text">Copyright 2020 All Right Reserved By <a href="https://html.design">Free html  Templates</a></p>
-      </div>
-    </div>
-    <!-- copyright section end -->
+    <!-- .container -->
+  </footer>
 </template>
 
 <script>

@@ -1,41 +1,41 @@
 <template>
-    <!--header section start -->
-    <div class="header_section">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="logo"><a href="index.html"><img src="@/assets/images/logo.png"></a></div>
-          </div>
-          <div class="col-md-9">
-            <div class="menu_text">
-              <ul>
-                <div class="togle_3">
-                  <div class="menu_main">
-                    <div class="padding_left0"><a href="#">Register</a>
-                    <span class="padding_left0"><a href="#">Login</a></span></div>
-                  </div>
-                  <div class="shoping_bag"><img src="@/assets/images/search-icon.png"></div>
+<!--header section start -->
+  <div class="header_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="logo"><router-link :to="{name: 'Home'}"><img src="@/assets/images/logo.png"></router-link></div>
+        </div>
+        <div class="col-md-9">
+          <div class="menu_text">
+            <ul>
+              <div class="togle_3">
+                <div class="menu_main">
+                  <div class="padding_left0"><a href="#">Register</a>
+                  <span class="padding_left0"><a href="#">Login</a></span></div>
                 </div>
-                <div id="myNav" class="overlay">
-                <a href="javascript:void(0)" class="closebtn" @click="closeNav" >&times;</a>
-                <div class="overlay-content">
-                  <a href="index.html">Home</a>
-                  <a href="services.html">Services</a>
-                  <a href="about.html">About</a>
-                  <a href="choose.html">Choose</a>
-                  <a href="team.html">Team</a>
-                  <a href="contact.html">Contact Us</a>
-                </div>
-                </div>
-                <span class="navbar-toggler-icon"></span>
-                <span @click="openNav"><img src="@/assets/images/toggle-icon.png" class="toggle_menu"></span>
-              </ul>
-            </div>
+                <div class="shoping_bag"><img src="@/assets/images/search-icon.png"></div>
+              </div>
+              <div id="myNav" class="overlay">
+              <a href="javascript:void(0)" class="closebtn" @click="closeNav" >&times;</a>
+              <div class="overlay-content">
+                <router-link :to="{name: 'Home'}" @click="moveToMain">Home</router-link>
+                <router-link :to="{name: 'Map'}" @click="moveToMap">Map</router-link>
+                <a href="about.html">About</a>
+                <a href="choose.html">Choose</a>
+                <a href="team.html">Team</a>
+                <a href="contact.html">Contact Us</a>
+              </div>
+              </div>
+              <span class="navbar-toggler-icon"></span>
+              <span @click="openNav"><img src="@/assets/images/toggle-icon.png" class="toggle_menu"></span>
+            </ul>
           </div>
         </div>
       </div>
+    </div>
     <!-- banner section start -->
-    <div class="banner_section layout_padding">
+    <div id="bannerDiv" class="banner_section layout_padding">
       <div class="container">
         <div class="row">
           <div class="col-sm-5">
@@ -54,26 +54,42 @@
       </div>
     </div>
     <!-- banner section end -->
-    </div>
-    <!-- header section end -->
+  </div>
+  <!-- header section end -->
 </template>
 
 <script>
 export default ({
   name: 'MainHeader',
   setup () {
+    let overlay = null
+    let headerSection = null
+
     const openNav = () => {
-      const overlay = document.getElementsByClassName('overlay')
+      overlay = document.getElementsByClassName('overlay')
       overlay[0].style.width = '100%'
     }
-
     const closeNav = () => {
-      const overlay = document.getElementsByClassName('overlay')
+      overlay = document.getElementsByClassName('overlay')
+      overlay.style.width = '0%'
+    }
+    const moveToMain = () => {
+      headerSection = document.getElementsByClassName('header_section')[0]
+      headerSection.classList.remove('background_bg')
+      document.getElementById('bannerDiv').style.display = 'block'
+      overlay[0].style.width = '0%'
+    }
+    const moveToMap = () => {
+      headerSection = document.getElementsByClassName('header_section')[0]
+      headerSection.classList.add('background_bg')
+      document.getElementById('bannerDiv').style.display = 'none'
       overlay[0].style.width = '0%'
     }
     return {
       openNav,
-      closeNav
+      closeNav,
+      moveToMain,
+      moveToMap
     }
   }
 })
