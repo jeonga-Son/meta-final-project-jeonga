@@ -1,5 +1,4 @@
 <template>
-  <title>메타멍멍 |</title>
     <!--header section start -->
     <MainHeader/>
     <router-view/>

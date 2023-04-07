@@ -39,8 +39,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-5">
-            <h1 class="banner_taital">Best YOUR</h1>
-            <h1 class="banner_taital_1">house CLEAN</h1>
+            <h1 class="banner_taital_1">메타멍멍 ☺︎</h1>
             <p class="banner_text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim</p>
             <div class="contact_bt"><a href="contact.html">CONTACT US<span class="contact_padding"><img src="@/assets/images/contact-icon.png"></span></a></div>
           </div>
