@@ -33,26 +33,48 @@ export default {
     },
     loadMap () {
       const container = document.getElementById('map')
-      const options = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+      const option = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
         level: 3
       }
+      const map = new kakao.maps.Map(container, option)
+      // HTML5의 지오로케이션으로 사용할 수 있는 지 확인
+      if (navigator.geolocation) {
+        // GeoLocation을 이용해서 접속 위치를 얻어옴
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const lat = position.coords.latitude // 위도
 
-      this.map = new window.kakao.maps.Map(container, options)
-      this.loadMaker()
-    },
-    // 지정한 위치에 마커 불러오기
-    loadMaker () {
-      const markerPosition = new window.kakao.maps.LatLng(
-        33.450701,
-        126.570667
-      )
+          const lon = position.coords.longitude // 경도
 
-      const marker = new window.kakao.maps.Marker({
-        position: markerPosition
-      })
+          const locPosition = new kakao.maps.LatLng(lat, lon)
+          const message = '<div style="padding:5px;">여기에 계신가요?</div>' // 인포윈도우에 표시될 내용
 
-      marker.setMap(this.map)
+          // 마커와 인포윈도우를 표시한다.
+          displayMarker(locPosition, message)
+        })
+      } else {
+        var locPostion = new kakao.maps.LatLng(33.450701, 126.570667)
+        var message = '현재위치를 찾을 수 없습니다.'
+
+        displayMarker(locPostion, message)
+      }
+      // 지도에 마커와 인포윈도우를 표시하는 함수
+      function displayMarker (locPosition, message) {
+        const marker = new kakao.maps.Marker({
+          map: map,
+          position: locPosition
+        })
+        const iwContent = message // 인포윈도우에 표시할 내용
+        const iwRemovaable = true
+        // 인포 윈도우 생성
+        var infowindow = new kakao.maps.InfoWindow({
+          content: iwContent,
+          removavle: iwRemovaable
+        })
+        infowindow.open(map, marker)
+
+        map.setCenter(locPosition)
+      }
     }
   }
 }
