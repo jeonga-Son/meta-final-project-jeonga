@@ -2,6 +2,9 @@
   <div>
       <div class="map_wrap" style="position: relative;">
     <div id="map">
+      <div class="center-marker">
+        <img src="@/assets/images/offMeeting/center-marker.png" alt="">
+      </div>
       <button @click="openModalFunc" class="custom-btn btn-12 modal-button" style="position: absolute; z-index: 2; bottom: 5%; right: 5%"><span>클릭하세요!</span><span>모임생성</span></button>
     </div>
   </div>
@@ -440,5 +443,14 @@ export default {
 	100% {
 		transform: translateY(0%);
 	}
+}
+
+.center-marker {
+  z-index: 3;
+  position: absolute;
+  width: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
