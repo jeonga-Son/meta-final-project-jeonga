@@ -1,8 +1,54 @@
 <template>
-  <div class="map_wrap" style="position: relative;">
+  <div>
+      <div class="map_wrap" style="position: relative;">
     <div id="map">
-      <button class="custom-btn btn-12" style="position: absolute; z-index: 2; bottom: 5%; right: 5%"><span>클릭하세요!</span><span>모임생성</span></button>
+      <button @click="openModalFunc" class="custom-btn btn-12 modal-button" style="position: absolute; z-index: 2; bottom: 5%; right: 5%"><span>클릭하세요!</span><span>모임생성</span></button>
     </div>
+  </div>
+  <!-- 모임생성 모달 start -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content slideDown">
+          <div class="modal-header">
+          <span @click="closeModalFunc" class="close" id="closeModal">&times;</span>
+          <h2>모임생성</h2>
+        </div>
+        <div class="modal-body">
+          <form action="" class="modal-form">
+            <div class="form-row">
+              <label for="">제목</label>
+              <input type="text" placeholder="제목을 입력해주세요.">
+            </div>
+            <div class="form-row">
+              <label for="">위치</label>
+              <input type="text" disabled>
+            </div>
+            <div class="form-row">
+              <label for="iduser">인원수</label>
+              <select class="user-select" name="user-name" id="user">
+                <option value="" selected disabled>인원수를 선택해주세요.</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="">Date</label>
+              <input type="date">
+            </div>
+            <div class="form-row">
+              <label for="">Start time</label>
+              <input type="time">
+            </div>
+            <div class="form-row">
+              <label for="">Event length</label>
+              <input type="text">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="button good" value="Save">
+        </div>
+      </div>
+    </div>
+    <!-- 모임생성 모달 end -->
   </div>
 </template>
 
@@ -15,7 +61,48 @@ export default {
       map: null
     }
   },
-  setup () {},
+  setup () {
+    const modal = document.getElementsByClassName('modal')
+    // const button = document.getElementById("modal-button")
+    // const close = document.querySelectorAll(".close")[0]
+    const clickable = document.querySelectorAll('.clickable')
+
+    const openModal = () => {
+      console.log(modal[0]);
+      modal[0].style.display = "block"
+    }
+    const closeModal = () => {
+        modal[0].style.display = "none"
+      }
+      //event listeners
+    const openModalFunc = () => {
+      openModal();
+    }
+
+    const closeModalFunc = () => {
+      closeModal();
+    }
+    // button.addEventListener('click', openModal, false)
+    // close.addEventListener('click', closeModal, false)
+
+    // for (let i = 0; i < clickable.length; i++) {
+    //   clickable[i].addEventListener('click', openModal, false)
+    // }
+
+    for (let i = 0; i < clickable.length; i++) {
+      clickable[i].openModalFunc;
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal[0]) {
+        modal[0].style.display = "none"
+      }
+    }
+    return {
+      openModalFunc,
+      closeModalFunc
+    }
+  },
   created () {},
   mounted () {
     // api 스크립트 소스 불러오기 및 지도 출력
@@ -90,6 +177,7 @@ export default {
   height: 600px;
 }
 
+/* --- 모임생성 btn ---*/
 .custom-btn {
   width: 130px;
   height: 40px;
@@ -123,7 +211,7 @@ export default {
 }
 .btn-12 span {
   background: rgb(0,172,238);
-background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   display: block;
   position: absolute;
   width: 130px;
@@ -177,5 +265,180 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   -webkit-transform: rotateX(-90deg);
   -moz-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
+}
+
+/*************/
+/*   MODAL   */
+/*************/
+/* The Modal (background) */
+
+.modal {
+	display: none;
+	/* Hidden by default */
+	position: absolute;
+	/* Stay in place */
+	z-index: 3;
+	/* Sit on top */
+	left: 0;
+	top: 20%;
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
+	overflow: hidden;
+	/* Black w/ opacity */
+	transition: all 0.5s ease 0.06s;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+	background-color: #fff;
+	margin: 15% auto;
+	/* 15% from the top and centered */
+	padding: 1.2rem;
+	max-width: 30%;
+  min-width: 400px;
+	/* Could be more or less, depending on screen size */
+	visibility: hidden;
+	box-shadow: 2px 2px 10px 0px rgba(99, 106, 119, 0.6);
+	border-radius: 5px;
+}
+
+
+/* The Close Button */
+.close {
+	color: #dedede;
+	/*float: right;*/
+	font-size: 2rem;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+
+.close:before {
+	content: "Close";
+	font-size: 1rem;
+	display: none;
+	text-decoration: none;
+	align-self: center;
+	margin-top: 0.2rem;
+	font-weight: 400;
+}
+
+.close:hover:before {
+	display: initial;
+	color: #dedede;
+}
+
+.close:hover,
+.close:focus {
+	color: hsl(0, 100%, 70%);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.close:active,
+.close:before:active {
+	transition: all 60ms ease;
+	transform: scale(0.97);
+}
+
+
+/***********************/
+/*  modal form layout  */
+/***********************/
+
+.modal-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-header {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.modal-footer {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+}
+
+.modal-footer > input {
+	margin-top: 0.8rem;
+	margin-bottom: 0rem;
+	margin-left: 0rem;
+	margin-right: 0rem;
+}
+
+.modal-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-row {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	padding: 0.4rem 0.4rem;
+}
+
+.form-row:nth-child(odd) {
+	background: #f2f2f2;
+}
+
+.form-row label {
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 50%;
+}
+
+.form-row input,
+.form-row select {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 50%;
+	border: 1px solid hsl(0, 0%, 90%);
+	padding: 0.2rem 0.2rem;
+	max-width: 50%;
+}
+
+.slideDown {
+	animation-name: slideDown;
+	-webkit-animation-name: slideDown;
+	animation-duration: 0.6s;
+	-webkit-animation-duration: 0.6s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+@keyframes slideDown {
+	0% {
+		transform: translateY(-100%);
+	}
+	50%{
+		transform: translateY(4%);
+	}
+	65%{
+		transform: translateY(-2%);
+	}
+	80%{
+		transform: translateY(2%);
+	}
+	95%{
+		transform: translateY(-1%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
 }
 </style>
