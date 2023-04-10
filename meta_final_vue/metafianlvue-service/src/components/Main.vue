@@ -1,5 +1,6 @@
 <template>
-  <!-- services section start -->
+  <div>
+      <!-- services section start -->
     <div class="services_section layout_padding">
       <div class="container">
         <h1 class="services_taital"><span>Our</span> <img src="@/assets/images/icon-1.png"> <span style="color: #1f1f1f">Services</span></h1>
@@ -223,6 +224,7 @@
       </div>
     </div>
     <!-- team section start -->
+  </div>
 </template>
 
 <script>

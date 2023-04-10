@@ -1,8 +1,9 @@
 <template>
-    <!--header section start -->
-    <MainHeader/>
-    <router-view/>
-    <MainFooter/>
+    <div>
+      <MainHeader/>
+      <router-view/>
+      <MainFooter/>
+    </div>
 </template>
 
 <script>
