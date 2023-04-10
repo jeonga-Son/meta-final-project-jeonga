@@ -66,8 +66,6 @@ export default {
   },
   setup () {
     const modal = document.getElementsByClassName('modal')
-    // const button = document.getElementById("modal-button")
-    // const close = document.querySelectorAll(".close")[0]
     const clickable = document.querySelectorAll('.clickable')
 
     const openModal = () => {
@@ -76,21 +74,13 @@ export default {
     }
     const closeModal = () => {
         modal[0].style.display = "none"
-      }
-      //event listeners
+    }
     const openModalFunc = () => {
       openModal();
     }
-
     const closeModalFunc = () => {
       closeModal();
     }
-    // button.addEventListener('click', openModal, false)
-    // close.addEventListener('click', closeModal, false)
-
-    // for (let i = 0; i < clickable.length; i++) {
-    //   clickable[i].addEventListener('click', openModal, false)
-    // }
 
     for (let i = 0; i < clickable.length; i++) {
       clickable[i].openModalFunc;
@@ -169,12 +159,33 @@ export default {
 
         map.setCenter(locPosition)
       }
+
+      // 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+      kakao.maps.event.addListener(map, 'center_changed', function() {
+
+          // 지도의  레벨을 얻어옵니다
+          var level = map.getLevel();
+
+          // 지도의 중심좌표를 얻어옵니다
+          var latlng = map.getCenter();
+
+          var message = '';
+          message += '중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다';
+
+          var resultDiv = document.getElementsByClassName('result');
+          resultDiv.innerHTML = message;
+
+          console.log(message);
+      });
     }
   }
 }
 </script>
 
 <style scoped>
+/*************/
+/*   KakaoMap   */
+/*************/
 #map {
   width: 100%;
   height: 600px;
@@ -270,11 +281,19 @@ export default {
   transform: rotateX(-90deg);
 }
 
+/*    중심 마커   */
+.center-marker {
+  z-index: 3;
+  position: absolute;
+  width: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /*************/
 /*   MODAL   */
 /*************/
-/* The Modal (background) */
-
 .modal {
 	display: none;
 	/* Hidden by default */
@@ -443,14 +462,5 @@ export default {
 	100% {
 		transform: translateY(0%);
 	}
-}
-
-.center-marker {
-  z-index: 3;
-  position: absolute;
-  width: 50px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 </style>
