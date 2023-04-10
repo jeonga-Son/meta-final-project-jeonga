@@ -1,18 +1,21 @@
 <template>
   <div>
-      <div class="map_wrap" style="position: relative;">
-    <div id="map">
-      <div class="center-marker">
-        <img src="@/assets/images/offMeeting/center-marker.png" alt="">
+    <div class="map_wrap" style="position: relative;">
+      <div id="map">
+        <div class="center-marker">
+          <img src="@/assets/images/offMeeting/center-marker.png" alt="">
+        </div>
+        <button @click="openModalFunc" class="custom-btn btn-12 modal-button" style="position: absolute; z-index: 2; bottom: 5%; right: 5%"><span>클릭하세요!</span><span>모임생성</span></button>
+        <div class="current-location">
+          <button id="current-location-btn" style="background-color: transparent;"><img src="@/assets/images/offMeeting/current-location.png" alt=""></button>
+        </div>
       </div>
-      <button @click="openModalFunc" class="custom-btn btn-12 modal-button" style="position: absolute; z-index: 2; bottom: 5%; right: 5%"><span>클릭하세요!</span><span>모임생성</span></button>
     </div>
-  </div>
-  <!-- 모임생성 모달 start -->
-      <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content slideDown">
-          <div class="modal-header">
+    <!-- 모임생성 모달 start -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content slideDown">
+        <div class="modal-header">
           <span @click="closeModalFunc" class="close" id="closeModal">&times;</span>
           <h2>모임생성</h2>
         </div>
@@ -46,11 +49,11 @@
             </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <input type="submit" class="button good" value="Save">
-        </div>
+      <div class="modal-footer">
+        <input type="submit" class="button good" value="Save">
       </div>
     </div>
+  </div>
     <!-- 모임생성 모달 end -->
   </div>
 </template>
@@ -175,7 +178,7 @@ export default {
           var resultDiv = document.getElementsByClassName('result');
           resultDiv.innerHTML = message;
 
-          console.log(message);
+          // console.log(message);
       });
 
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
@@ -188,13 +191,12 @@ export default {
 
 <style scoped>
 /*************/
-/*   KakaoMap   */
+/*  KakaoMap */
 /*************/
 #map {
   width: 100%;
   height: 600px;
 }
-
 /* --- 모임생성 btn ---*/
 .custom-btn {
   width: 130px;
@@ -214,7 +216,6 @@ export default {
    4px 4px 5px 0px rgba(0,0,0,.1);
   outline: none;
 }
-
 .btn-12{
   position: relative;
   right: 20px;
@@ -284,7 +285,6 @@ export default {
   -moz-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
 }
-
 /*    중심 마커   */
 .center-marker {
   z-index: 3;
@@ -293,6 +293,13 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.current-location {
+  z-index: 4;
+  position: absolute;
+  bottom: 13%;
+  right: 3%;
+  width: 40px;
 }
 
 /*************/
